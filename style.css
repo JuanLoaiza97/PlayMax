@@ -1,0 +1,69 @@
+:root {
+    --primary-blue: #235afd;
+    --dark-grey: #1A1A1A;
+    --medium-grey: #333333;
+    --white: #FFFFFF;
+    --second-blue: #00c4ff;
+}
+
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.main-header {
+    background-color: var(--dark-grey);
+    padding: 15px 50px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box; 
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 30px; 
+}
+
+.logo {
+    height: 40px; 
+    width: auto;
+}
+
+.main-nav ul {
+    list-style: none; 
+    margin: 0;
+    padding: 0;
+    display: flex; 
+    gap: 25px; 
+}
+
+.main-nav ul li a {
+    text-decoration: none; 
+    color: var(--white); 
+    font-size: 1.1em;
+    font-weight: 500;
+    transition: color 0.3s ease; 
+}
+
+.main-nav ul li a:hover,
+.main-nav ul li a.active { 
+    color: var(--primary-blue);
+}
+
+.profile-icon {
+    height: 35px; 
+    width: 35px;
+    border-radius: 50%; 
+    object-fit: cover; 
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.profile-icon:hover {
+    border-color: var(--primary-blue); 
+}
