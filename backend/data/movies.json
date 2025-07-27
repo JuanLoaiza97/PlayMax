@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "titulo": "Barbie",
+    "genero": "comedia",
+    "año": 2023
+  },
+
+  {
+    "id": 1,
+    "titulo": "Hereditary",
+    "genero": "terror",
+    "año": 2018
+  },
+  
+  {
+    "id": 1,
+    "titulo": "John Wick 4",
+    "genero": "accion",
+    "año": 2023
+  },
+  
+  {
+    "id": 1,
+    "titulo": "Oppenheimer",
+    "genero": "drama",
+    "año": 2023
+  }
+]
