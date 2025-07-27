@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => { //para cuando cargue la pa
 //12
 
 function cargarPeliculas() {
-    fetch('https://api.themoviedb.org/3/movie/popular?api_key=5c550f1f115db24ed0b34dc158d98e9d&language=es-ES&page=1') // api de películas
+    fetch('https://api.themoviedb.org/3/movie/popular?api_key=5c550f1f115db24ed0b34dc158d98e9d&language=es-ES&page=1') // api para obtener informacion de las películas
         .then(response => response.json())
         .then(data => {
             const peliculas = data.results;
@@ -104,10 +104,10 @@ function cargarPeliculas() {
 
             peliculas.forEach(pelicula => {
                 const tarjeta = document.createElement('div');
-                tarjeta.classList.add('movie-card');
+                tarjeta.classList.add('movie-card'); //pone la informacion de cada pelicula en cada tarjeta
                 tarjeta.innerHTML = `   
                     <img src="https://image.tmdb.org/t/p/w500${pelicula.poster_path}" alt="${pelicula.title}">
-                    <div class="movie-info">
+                    <div class="movie-info"> 
                         <h3>${pelicula.title}</h3>
                         <p>Fecha de estreno: ${pelicula.release_date}</p>
                         <button class="card-watch-button" onclick="verPelicula('${pelicula.id}')">Ver Ahora</button>
@@ -122,16 +122,6 @@ function cargarPeliculas() {
 }
 
 function verPelicula(id) {
-    window.location.href = `player.html?id=${id}`;
+    window.location.href = `player.html?id=${id}`; 
 }
 
-
-function verPelicula(id) {
-
-    console.log("Pelicula seleccionada:", id);
-
-}
-
-function verPelicula(id) {
-    window.location.href = `player.html?id=${id}`;
-}
