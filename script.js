@@ -93,21 +93,23 @@ document.addEventListener("DOMContentLoaded", () => { //para cuando cargue la pa
 });
 
 //12
+
 function cargarPeliculas() {
-    fetch('http://localhost:3000/api/movies') // Pide al backend las peliculas
-        .then(response => response.json()) // Convierte la respuesta a json
-        .then(peliculas => {
-            const contenedor = document.querySelector(".movies-grid");
+    fetch('https://api.themoviedb.org/3/movie/popular?api_key=5c550f1f115db24ed0b34dc158d98e9d&language=es-ES&page=1') // api de películas
+        .then(response => response.json())
+        .then(data => {
+            const peliculas = data.results;
+            const contenedor = document.querySelector(".movies-grid"); 
             contenedor.innerHTML = ''; // Limpia lo que había
 
             peliculas.forEach(pelicula => {
                 const tarjeta = document.createElement('div');
-                tarjeta.classList.add('movie-card');  //crea el contenido visible de cada tarjeta
+                tarjeta.classList.add('movie-card');
                 tarjeta.innerHTML = `   
-                    <img src="./img/movie_gen.jpg" alt="${pelicula.titulo}">
+                    <img src="https://image.tmdb.org/t/p/w500${pelicula.poster_path}" alt="${pelicula.title}">
                     <div class="movie-info">
-                        <h3>${pelicula.titulo}</h3>
-                        <p>ID: ${pelicula.id}</p>
+                        <h3>${pelicula.title}</h3>
+                        <p>Fecha de estreno: ${pelicula.release_date}</p>
                         <button class="card-watch-button" onclick="verPelicula('${pelicula.id}')">Ver Ahora</button>
                     </div>
                 `;
@@ -118,6 +120,11 @@ function cargarPeliculas() {
             console.error('Error al cargar películas:', error);
         });
 }
+
+function verPelicula(id) {
+    window.location.href = `player.html?id=${id}`;
+}
+
 
 function verPelicula(id) {
 
