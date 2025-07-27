@@ -80,3 +80,51 @@ function stopAutoSlide() {
 document.addEventListener("DOMContentLoaded", () => {
     showSlides(); // Muestra el primer slide y empieza el contador
 });
+
+
+
+
+
+fetch('http://localhost:3000/api/movies')
+
+document.addEventListener("DOMContentLoaded", () => { //para cuando cargue la pagina cargar las peliculas
+    showSlides();
+    cargarPeliculas(); 
+});
+
+//12
+function cargarPeliculas() {
+    fetch('http://localhost:3000/api/movies') // Pide al backend las peliculas
+        .then(response => response.json()) // Convierte la respuesta a json
+        .then(peliculas => {
+            const contenedor = document.querySelector(".movies-grid");
+            contenedor.innerHTML = ''; // Limpia lo que había
+
+            peliculas.forEach(pelicula => {
+                const tarjeta = document.createElement('div');
+                tarjeta.classList.add('movie-card');  //crea el contenido visible de cada tarjeta
+                tarjeta.innerHTML = `   
+                    <img src="./img/movie_gen.jpg" alt="${pelicula.titulo}">
+                    <div class="movie-info">
+                        <h3>${pelicula.titulo}</h3>
+                        <p>ID: ${pelicula.id}</p>
+                        <button class="card-watch-button" onclick="verPelicula('${pelicula.id}')">Ver Ahora</button>
+                    </div>
+                `;
+                contenedor.appendChild(tarjeta);    
+            });
+        })
+        .catch(error => {
+            console.error('Error al cargar películas:', error);
+        });
+}
+
+function verPelicula(id) {
+
+    console.log("Pelicula seleccionada:", id);
+
+}
+
+function verPelicula(id) {
+    window.location.href = `player.html?id=${id}`;
+}
