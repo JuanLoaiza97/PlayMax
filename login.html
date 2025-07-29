@@ -52,7 +52,7 @@
                         <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
                     </div>
                     <button type="submit" class="login-button">Entrar</button>
-                    <p class="signup-text">¿No tienes una cuenta? <a href="#" class="signup-link">Regístrate aquí</a></p>
+                    <p class="signup-text">¿No tienes una cuenta? <a href="./registro.html" class="signup-link">Regístrate aquí</a></p>
                 </form>
             </div>
         </section>
@@ -91,47 +91,82 @@
         </div>
     </footer>
 
-    <script>
-        // Configuración de Firebase (usando tu configuración original)
-        const firebaseConfig = {
-            apiKey: "AIzaSyC7PhfZwbP7QcZO8vCKwSQuuTjKt7Br4OQ",
-            authDomain: "playmax-6bc40.firebaseapp.com",
-            databaseURL: "https://playmax-6bc40-default-rtdb.firebaseio.com",
-            projectId: "playmax-6bc40",
-            storageBucket: "playmax-6bc40.firebasestorage.app",
-            messagingSenderId: "972267905771",
-            appId: "1:972267905771:web:485787c59922ce951094ae",
-            measurementId: "G-GMYC8DCLTF"
-        };
+    <!-- En tu archivo login.html -->
+<script type="module">
+  // Importaciones de Firebase
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-        // Inicializar Firebase
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
+  // Tu configuración de Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyC7PhfZwbP7QcZO8vCKwSQuuTjKt7Br4OQ",
+    authDomain: "playmax-6bc40.firebaseapp.com",
+    databaseURL: "https://playmax-6bc40-default-rtdb.firebaseio.com",
+    projectId: "playmax-6bc40",
+    storageBucket: "playmax-6bc40.firebasestorage.app",
+    messagingSenderId: "972267905771",
+    appId: "1:972267905771:web:485787c59922ce951094ae",
+    measurementId: "G-GMYC8DCLTF"
+  };
 
-        // Manejar el envío del formulario
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+  // Inicializar Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
 
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
+  // Función para manejar el login
+  async function handleLogin(event) {
+    event.preventDefault();
 
-            auth.signInWithEmailAndPassword(email, password)
-                .then(() => {
-                    // Redireccionar a index.html después de login exitoso
-                    window.location.href = "index.html";
-                })
-                .catch((error) => {
-                    alert("Error al iniciar sesión: " + error.message);
-                    console.error("Error de autenticación:", error);
-                });
-        });
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
 
-        // Opcional: Verificar si el usuario ya está logueado
-        auth.onAuthStateChanged((user) => {
-            if (user) {
-                window.location.href = "./index.html";
-            }
-        });
-    </script>
+    // Validación básica
+    if (!email || !password) {
+      alert("Por favor ingrese email y contraseña");
+      return;
+    }
+
+    try {
+      // Intentar autenticación
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      // Redireccionar a index.html después de login exitoso
+      window.location.href = "index.html";
+    } catch (error) {
+      // Manejo detallado de errores
+      let errorMessage = "Error al iniciar sesión: ";
+
+      switch (error.code) {
+        case "auth/invalid-credential":
+          errorMessage += "Credenciales inválidas. Verifique su email y contraseña.";
+          break;
+        case "auth/user-not-found":
+          errorMessage += "No existe un usuario con este email.";
+          break;
+        case "auth/wrong-password":
+          errorMessage += "Contraseña incorrecta.";
+          break;
+        case "auth/invalid-email":
+          errorMessage += "El formato del email no es válido.";
+          break;
+        case "auth/too-many-requests":
+          errorMessage += "Demasiados intentos fallidos. Intente más tarde.";
+          break;
+        default:
+          errorMessage += error.message;
+      }
+
+      alert(errorMessage);
+      console.error("Error de autenticación:", error);
+    }
+  }
+
+  // Asignar el evento al formulario
+  document.addEventListener('DOMContentLoaded', () => {
+    const loginForm = document.querySelector('.login-form');
+    loginForm.addEventListener('submit', handleLogin);
+  });
+</script>
 </body>
 </html>

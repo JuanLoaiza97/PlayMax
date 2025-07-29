@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Perfil de Usuario - PlayMax</title>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 </head>
 <body>
     <header class="main-header">
@@ -14,92 +18,121 @@
             </a>
             <nav class="main-nav">
                 <ul>
-                    <li><a href="/.html">Home</a></li>
-                    <li><a href="/peliculas.html">Películas</a></li>
-                    <li><a href="/series.html">Series</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="peliculas.html">Películas</a></li>
+                    <li><a href="series.html">Series</a></li>
                     <li><a href="#">Mi Lista</a></li>
                 </ul>
             </nav>
         </div>
         <div class="header-right">
-            <a href="#" class="profile-link">
+            <a href="perfil.html" class="profile-link">
                 <img src="./img/background_replace_100dp_FFFFFF_FILL0_wght400_GRAD0_opsz48.png" alt="Perfil" class="profile-icon">
             </a>
         </div>
     </header>
+
     <main class="profile-page-main">
-    <section class="profile-section">
-        <div class="register-container">
-          <div class="form-section">
-            <div class="profile-header">
-                <div class="profile-avatar">
-                    <img src="./img/profile_avatar.png" alt="Avatar del usuario">
-                    <button class="edit-avatar-btn">Cambiar foto</button>
-                </div>
-                <h1>Mi Perfil</h1>
-            </div>
-            <div class="form-group">
-              <label>Nombre de Usuario</label>
-              <input type="text" id="username" value="JuanPerez123" disabled>
-            </div>
-            <div class="form-group">
-              <label>Correo Electrónico</label>
-              <input type="email" id="email" name="email" placeholder="tu@ejemplo.com" disabled>
-            </div>
-            <div class="form-group">
-              <label>Contraseña</label>
-              <!--<div class="detail-value password-field">
-                        ••••••••
-                        <button class="show-password-btn">Mostrar</button>
-                    </div>-->
-              <input type="password" id="password" name="password" placeholder="••••••••">
-            </div>
+        <section class="profile-section">
+            <div class="register-container">
+                <div class="form-section">
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            <img id="user-avatar" src="./img/profile_avatar.png" alt="Avatar del usuario">
+                            <button class="edit-avatar-btn">Cambiar foto</button>
+                        </div>
+                        <h1 id="welcome-message">Mi Perfil</h1>
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre de Usuario</label>
+                        <input type="text" id="username" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>Correo Electrónico</label>
+                        <input type="email" id="email" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>Plan de Suscripción</label>
+                        <input type="text" id="subscription" disabled>
+                    </div>
 
-                </div>
-
-                <div class="profile-actions">
-                    <button class="edit-profile-btn">Editar Perfil</button>
-                    <button class="change-password-btn">Cambiar Contraseña</button>
-                    <button class="logout-btn">Cerrar Sesión</button>
+                    <div class="profile-actions">
+                        <button class="edit-profile-btn">Editar Perfil</button>
+                        <button class="change-password-btn">Cambiar Contraseña</button>
+                        <button id="logout-btn" class="logout-btn">Cerrar Sesión</button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
     </main>
 
     <footer class="main-footer">
-        <div class="footer-content">
-            <div class="footer-logo">
-                <a href="#">
-                    <img src="./img/logoPM.png" alt="PlayMax Logo Footer" class="logo-footer">
-                </a>
-                <p>&copy; 2025 PlayMax. Todos los derechos reservados.</p>
-            </div>
-
-            <nav class="footer-nav">
-                <h3>Navegación</h3>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Películas</a></li>
-                    <li><a href="#">Series</a></li>
-                    <li><a href="#">Mi Lista</a></li>
-                    <li><a href="#">Contacto</a></li>
-                </ul>
-            </nav>
-
-            <div class="footer-links">
-                <h3>Ayuda y Soporte</h3>
-                <ul>
-                    <li><a href="#">Política de Privacidad</a></li>
-                    <li><a href="#">Contáctanos</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>Hecho con ❤️ en Medellín, Colombia.</p>
-        </div>
+        <!-- ... (mismo footer que en tu código original) ... -->
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Configuración de Firebase (usando tu configuración original)
+        const firebaseConfig = {
+            apiKey: "AIzaSyC7PhfZwbP7QcZO8vCKwSQuuTjKt7Br4OQ",
+            authDomain: "playmax-6bc40.firebaseapp.com",
+            databaseURL: "https://playmax-6bc40-default-rtdb.firebaseio.com",
+            projectId: "playmax-6bc40",
+            storageBucket: "playmax-6bc40.firebasestorage.app",
+            messagingSenderId: "972267905771",
+            appId: "1:972267905771:web:485787c59922ce951094ae",
+            measurementId: "G-GMYC8DCLTF"
+        };
+
+        // Inicializar Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const database = firebase.database();
+
+        // Verificar autenticación al cargar la página
+        auth.onAuthStateChanged((user) => {
+            if (!user) {
+                // Si no hay usuario logueado, redirigir al login
+                window.location.href = "login.html";
+            } else {
+                // Cargar datos del usuario
+                loadUserData(user.uid);
+            }
+        });
+
+        // Función para cargar datos del usuario desde la base de datos
+        function loadUserData(userId) {
+            const userRef = database.ref('users/' + userId);
+
+            userRef.once('value').then((snapshot) => {
+                const userData = snapshot.val();
+
+                if (userData) {
+                    // Mostrar datos en el perfil
+                    document.getElementById('username').value = userData.username || 'No especificado';
+                    document.getElementById('email').value = userData.email || 'No especificado';
+                    document.getElementById('subscription').value = userData.subscriptionPlan || 'Básico';
+                    document.getElementById('welcome-message').textContent = `Hola, ${userData.username || 'Usuario'}`;
+
+                    // Mostrar avatar si existe
+                    if (userData.avatarUrl) {
+                        document.getElementById('user-avatar').src = userData.avatarUrl;
+                    }
+                }
+            }).catch((error) => {
+                console.error("Error al cargar datos del usuario:", error);
+            });
+        }
+
+        // Manejar cierre de sesión
+        document.getElementById('logout-btn').addEventListener('click', () => {
+            auth.signOut().then(() => {
+                window.location.href = "login.html";
+            }).catch((error) => {
+                alert("Error al cerrar sesión: " + error.message);
+            });
+        });
+
+        // Aquí puedes agregar más funcionalidades como editar perfil, cambiar contraseña, etc.
+    </script>
 </body>
 </html>
