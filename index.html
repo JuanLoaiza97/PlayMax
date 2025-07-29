@@ -1,223 +1,271 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>PlayMax</title>
-</head>
-<body>
-    <header class="main-header">
-        <div class="header-left">
-            <a href="#" class="logo-link">
-                <img src="./img/logoPM.png" alt="PlayMax Logo" class="logo">
-            </a>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="/peliculas.html">Películas</a></li>
-                    <li><a href="/series.html">Series</a></li>
-                    <li><a href="#">Mi Lista</a></li>
-                </ul>
-            </nav>
-        </div>
-        <div class="header-right">
-            <a href="/login.html" class="profile-link">
-                <img src="./img/background_replace_100dp_FFFFFF_FILL0_wght400_GRAD0_opsz48.png" alt="Perfil" class="profile-icon">
-            </a>
-        </div>
-    </header>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>PlayMax</title>
+    </head>
+    <body>
+        <header class="main-header">
+            <div class="header-left">
+                <a href="#" class="logo-link">
+                    <img src="./img/logoPM.png" alt="PlayMax Logo" class="logo">
+                </a>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="/peliculas.html">Películas</a></li>
+                        <li><a href="/series.html">Series</a></li>
+                        <li><a href="#">Mi Lista</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="header-right">
+                <a href="/login.html" class="profile-link">
+                    <img src="./img/background_replace_100dp_FFFFFF_FILL0_wght400_GRAD0_opsz48.png" alt="Perfil" class="profile-icon">
+                </a>
+            </div>
+        </header>
 
-     <main>
-        <section class="hero-slider-section">
-            <div class="slider-container">
-                <div class="slider-item fade">
-                    <img src="./img/slider1.jpg" alt="Slider Imágen 1">
-                    <div class="slider-overlay">
-                        <h2>El Viaje del Héroe: Una Odisea Espacial</h2>
-                        <p>Descubre una historia épica de valentía y exploración a través de galaxias desconocidas.</p>
-                        <button class="watch-now-button">Ver Ahora</button>
+        <main>
+            <section class="hero-slider-section">
+                <div class="slider-container">
+                    <div class="slider-item fade">
+                        <img src="./img/slider1.jpg" alt="Slider Imágen 1">
+                        <div class="slider-overlay">
+                            <h2>El Viaje del Héroe: Una Odisea Espacial</h2>
+                            <p>Descubre una historia épica de valentía y exploración a través de galaxias desconocidas.</p>
+                            <button class="watch-now-button">Ver Ahora</button>
+                        </div>
+                    </div>
+
+                    <div class="slider-item fade">
+                        <img src="./img/slider2.jpg" alt="Slider Imágen 2">
+                        <div class="slider-overlay">
+                            <h2>Sombras Urbanas: La Serie Definitiva</h2>
+                            <p>Adéntrate en los misterios de la ciudad en esta aclamada serie de suspenso y drama.</p>
+                            <button class="watch-now-button">Ver Ahora</button>
+                        </div>
+                    </div>
+
+                    <div class="slider-item fade">
+                        <img src="./img/slider3.jpg" alt="Slider Imágen 3">
+                        <div class="slider-overlay">
+                            <h2>El Último Reino: La Batalla Final</h2>
+                            <p>Únete a los guerreros en su lucha por la libertad y el destino de su mundo.</p>
+                            <button class="watch-now-button">Ver Ahora</button>
+                        </div>
+                    </div>
+
+                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                </div>
+
+                <div style="text-align:center; margin-top: 20px;">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                </div>
+            </section>
+
+        </main>
+
+
+        <section class="movies-section">
+            <h2>Películas Populares</h2>
+
+            <div class="movies-grid">
+                <div class="movie-card">
+                    <img src="./img/movie_gen.jpg" alt="Título Película">
+                    <div class="movie-info">
+                        <h3>lorem</h3>
+                        <p>Género | Duración</p>
+                        <button class="card-watch-button">Ver Ahora</button>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <img src="./img/movie_gen.jpg" alt="Título Película">
+                    <div class="movie-info">
+                        <h3>lorem</h3>
+                        <p>Género | Duración</p>
+                        <button class="card-watch-button">Ver Ahora</button>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <img src="./img/movie_gen.jpg" alt="Título Película">
+                    <div class="movie-info">
+                        <h3>lorem</h3>
+                        <p>Género | Duración</p>
+                        <button class="card-watch-button" onclick="verPelicula('${pelicula.id}')">Ver Ahora</button>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <img src="./img/movie_gen.jpg" alt="Título Película">
+                    <div class="movie-info">
+                        <h3>lorem</h3>
+                        <p>Género | Duración</p>
+                        <button class="card-watch-button">Ver Ahora</button>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <img src="./img/movie_gen.jpg" alt="Título Película">
+                    <div class="movie-info">
+                        <h3>lorem</h3>
+                        <p>Género | Duración</p>
+                        <button class="card-watch-button">Ver Ahora</button>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <img src="./img/movie_gen.jpg" alt="Título Película">
+                    <div class="movie-info">
+                        <h3>lorem</h3>
+                        <p>Género | Duración</p>
+                        <button class="card-watch-button">Ver Ahora</button>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <img src="./img/movie_gen.jpg" alt="Título Película">
+                    <div class="movie-info">
+                        <h3>lorem</h3>
+                        <p>Género | Duración</p>
+                        <button class="card-watch-button">Ver Ahora</button>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <img src="./img/movie_gen.jpg" alt="Título Película">
+                    <div class="movie-info">
+                        <h3>lorem</h3>
+                        <p>Género | Duración</p>
+                        <button class="card-watch-button">Ver Ahora</button>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <img src="./img/movie_gen.jpg" alt="Título Película">
+                    <div class="movie-info">
+                        <h3>lorem</h3>
+                        <p>Género | Duración</p>
+                        <button class="card-watch-button">Ver Ahora</button>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <img src="./img/movie_gen.jpg" alt="Título Película">
+                    <div class="movie-info">
+                        <h3>lorem</h3>
+                        <p>Género | Duración</p>
+                        <button class="card-watch-button">Ver Ahora</button>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <img src="./img/movie_gen.jpg" alt="Título Película">
+                    <div class="movie-info">
+                        <h3>lorem</h3>
+                        <p>Género | Duración</p>
+                        <button class="card-watch-button">Ver Ahora</button>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <img src="./img/movie_gen.jpg" alt="Título Película">
+                    <div class="movie-info">
+                        <h3>lorem</h3>
+                        <p>Género | Duración</p>
+                        <button class="card-watch-button">Ver Ahora</button>
                     </div>
                 </div>
 
-                <div class="slider-item fade">
-                    <img src="./img/slider2.jpg" alt="Slider Imágen 2">
-                    <div class="slider-overlay">
-                        <h2>Sombras Urbanas: La Serie Definitiva</h2>
-                        <p>Adéntrate en los misterios de la ciudad en esta aclamada serie de suspenso y drama.</p>
-                        <button class="watch-now-button">Ver Ahora</button>
-                    </div>
-                </div>
 
-                <div class="slider-item fade">
-                    <img src="./img/slider3.jpg" alt="Slider Imágen 3">
-                    <div class="slider-overlay">
-                        <h2>El Último Reino: La Batalla Final</h2>
-                        <p>Únete a los guerreros en su lucha por la libertad y el destino de su mundo.</p>
-                        <button class="watch-now-button">Ver Ahora</button>
-                    </div>
-                </div>
 
-                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="next" onclick="plusSlides(1)">&#10095;</a>
             </div>
 
-            <div style="text-align:center; margin-top: 20px;">
-                <span class="dot" onclick="currentSlide(1)"></span>
-                <span class="dot" onclick="currentSlide(2)"></span>
-                <span class="dot" onclick="currentSlide(3)"></span>
-            </div>
         </section>
 
-    </main>
 
-
-    <section class="movies-section">
-        <h2>Películas Populares</h2>
-
-        <div class="movies-grid">
-            <div class="movie-card">
-                <img src="./img/movie_gen.jpg" alt="Título Película">
-                <div class="movie-info">
-                    <h3>lorem</h3>
-                    <p>Género | Duración</p>
-                    <button class="card-watch-button">Ver Ahora</button>
+        <footer class="main-footer">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="#">
+                        <img src="./img/logoPM.png" alt="PlayMax Logo Footer" class="logo-footer">
+                    </a>
+                    <p>&copy; 2025 PlayMax. Todos los derechos reservados.</p>
                 </div>
-            </div>
-            <div class="movie-card">
-                <img src="./img/movie_gen.jpg" alt="Título Película">
-                <div class="movie-info">
-                    <h3>lorem</h3>
-                    <p>Género | Duración</p>
-                    <button class="card-watch-button">Ver Ahora</button>
+
+                <nav class="footer-nav">
+                    <h3>Navegación</h3>
+                    <ul>
+                        <li><a href="/index.html">Home</a></li>
+                        <li><a href="/peliculas.html">Películas</a></li>
+                        <li><a href="/series.html">Series</a></li>
+                        <li><a href="#">Mi Lista</a></li>
+                    </ul>
+                </nav>
+
+                <div class="footer-links">
+                    <h3>Ayuda y Soporte</h3>
+                    <ul>
+                        <li><a href="#">Política de Privacidad</a></li>
+                        <li><a href="#">Contáctanos</a></li>
+                    </ul>
                 </div>
+
+                
             </div>
-            <div class="movie-card">
-                <img src="./img/movie_gen.jpg" alt="Título Película">
-                <div class="movie-info">
-                    <h3>lorem</h3>
-                    <p>Género | Duración</p>
-                    <button class="card-watch-button" onclick="verPelicula('${pelicula.id}')">Ver Ahora</button>
-                </div>
+            <div class="footer-bottom">
+                <p>Hecho con ❤️ en Medellín, Colombia.</p>
             </div>
-            <div class="movie-card">
-                <img src="./img/movie_gen.jpg" alt="Título Película">
-                <div class="movie-info">
-                    <h3>lorem</h3>
-                    <p>Género | Duración</p>
-                    <button class="card-watch-button">Ver Ahora</button>
-                </div>
-            </div>
-            <div class="movie-card">
-                <img src="./img/movie_gen.jpg" alt="Título Película">
-                <div class="movie-info">
-                    <h3>lorem</h3>
-                    <p>Género | Duración</p>
-                    <button class="card-watch-button">Ver Ahora</button>
-                </div>
-            </div>
-            <div class="movie-card">
-                <img src="./img/movie_gen.jpg" alt="Título Película">
-                <div class="movie-info">
-                    <h3>lorem</h3>
-                    <p>Género | Duración</p>
-                    <button class="card-watch-button">Ver Ahora</button>
-                </div>
-            </div>
-            <div class="movie-card">
-                <img src="./img/movie_gen.jpg" alt="Título Película">
-                <div class="movie-info">
-                    <h3>lorem</h3>
-                    <p>Género | Duración</p>
-                    <button class="card-watch-button">Ver Ahora</button>
-                </div>
-            </div>
-            <div class="movie-card">
-                <img src="./img/movie_gen.jpg" alt="Título Película">
-                <div class="movie-info">
-                    <h3>lorem</h3>
-                    <p>Género | Duración</p>
-                    <button class="card-watch-button">Ver Ahora</button>
-                </div>
-            </div>
-            <div class="movie-card">
-                <img src="./img/movie_gen.jpg" alt="Título Película">
-                <div class="movie-info">
-                    <h3>lorem</h3>
-                    <p>Género | Duración</p>
-                    <button class="card-watch-button">Ver Ahora</button>
-                </div>
-            </div>
-            <div class="movie-card">
-                <img src="./img/movie_gen.jpg" alt="Título Película">
-                <div class="movie-info">
-                    <h3>lorem</h3>
-                    <p>Género | Duración</p>
-                    <button class="card-watch-button">Ver Ahora</button>
-                </div>
-            </div>
-            <div class="movie-card">
-                <img src="./img/movie_gen.jpg" alt="Título Película">
-                <div class="movie-info">
-                    <h3>lorem</h3>
-                    <p>Género | Duración</p>
-                    <button class="card-watch-button">Ver Ahora</button>
-                </div>
-            </div>
-            <div class="movie-card">
-                <img src="./img/movie_gen.jpg" alt="Título Película">
-                <div class="movie-info">
-                    <h3>lorem</h3>
-                    <p>Género | Duración</p>
-                    <button class="card-watch-button">Ver Ahora</button>
-                </div>
-            </div>
+        </footer>        
+
+                
 
 
 
-        </div>
-
-    </section>
 
 
-    <footer class="main-footer">
-        <div class="footer-content">
-            <div class="footer-logo">
-                <a href="#">
-                    <img src="./img/logoPM.png" alt="PlayMax Logo Footer" class="logo-footer">
-                </a>
-                <p>&copy; 2025 PlayMax. Todos los derechos reservados.</p>
-            </div>
-
-            <nav class="footer-nav">
-                <h3>Navegación</h3>
-                <ul>
-                    <li><a href="/index.html">Home</a></li>
-                    <li><a href="/peliculas.html">Películas</a></li>
-                    <li><a href="/series.html">Series</a></li>
-                    <li><a href="#">Mi Lista</a></li>
-                </ul>
-            </nav>
-
-            <div class="footer-links">
-                <h3>Ayuda y Soporte</h3>
-                <ul>
-                    <li><a href="#">Política de Privacidad</a></li>
-                    <li><a href="#">Contáctanos</a></li>
-                </ul>
-            </div>
-
-            
-        </div>
-        <div class="footer-bottom">
-            <p>Hecho con ❤️ en Medellín, Colombia.</p>
-        </div>
-    </footer>        
-
-            
-
-
+<script type="module" src="funciones.js"></script>
     <script src="script.js"></script>
 
+    <script type="module">
 
-</body>
-</html>
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
+    
+    import { getDatabase, ref, set, get, push, child } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
+
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+        apiKey: "AIzaSyC7PhfZwbP7QcZO8vCKwSQuuTjKt7Br4OQ",
+        authDomain: "playmax-6bc40.firebaseapp.com",
+        databaseURL: "https://playmax-6bc40-default-rtdb.firebaseio.com",
+        projectId: "playmax-6bc40",
+        storageBucket: "playmax-6bc40.firebasestorage.app",
+        messagingSenderId: "972267905771",
+        appId: "1:972267905771:web:485787c59922ce951094ae",
+        measurementId: "G-GMYC8DCLTF"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+
+    // para guardar la conexion con la base de datos
+
+    const db= getDatabase(app); 
+
+    window.db = db;
+    window.ref = ref;
+    window.set = set;
+    window.get = get;
+    window.push = push;
+
+    
+
+
+    </script>
+   
+
+
+    </body>
+    </html>

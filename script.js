@@ -79,26 +79,36 @@ function stopAutoSlide() {
 // Iniciar el slider cuando la página carga
 document.addEventListener("DOMContentLoaded", () => {
     showSlides(); // Muestra el primer slide y empieza el contador
+    cargarPeliculas(); // Cargar las películas al inicio
 });
 
 
 
 
 
-fetch('http://localhost:3000/api/movies')
 
-document.addEventListener("DOMContentLoaded", () => { //para cuando cargue la pagina cargar las peliculas
-    showSlides();
-    cargarPeliculas(); 
-});
 
-//12
+//prueba 
+//fetch('http://localhost:3000/api/movies')
+
+
+window.peliculas = [];// Variable para almacenar las películas
+
+
+
 
 function cargarPeliculas() {
     fetch('https://api.themoviedb.org/3/movie/popular?api_key=5c550f1f115db24ed0b34dc158d98e9d&language=es-ES&page=1') // api para obtener informacion de las películas
-        .then(response => response.json())
+        .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+        })
+
+
         .then(data => {
-            const peliculas = data.results;
+            window.peliculas = data.results;
             const contenedor = document.querySelector(".movies-grid"); 
             contenedor.innerHTML = ''; // Limpia lo que había
 
@@ -121,7 +131,9 @@ function cargarPeliculas() {
         });
 }
 
-function verPelicula(id) {
-    window.location.href = `player.html?id=${id}`; 
-}
-
+GuardarEnHistorial({
+  titulo: "Ejemplo",
+  genero: "Drama",
+  duracion: "2h",
+  imagen: "https://via.placeholder.com/150"
+});
