@@ -131,9 +131,13 @@ function cargarPeliculas() {
         });
 }
 
-GuardarEnHistorial({
-  titulo: "Ejemplo",
-  genero: "Drama",
-  duracion: "2h",
-  imagen: "https://via.placeholder.com/150"
-});
+
+
+async function obtenerTrailer(id) {
+  const apiKey = "https://console.firebase.google.com/u/0/project/playmax-6bc40/database/playmax-6bc40-default-rtdb/data/~2F";
+  const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${apiKey}`);
+  const data = await response.json();
+  
+  const trailer = data.results.find(video => video.type === "Trailer" && video.site === "YouTube");
+  return trailer ? `https://www.youtube.com/watch?v=${trailer.key}` : null;
+}

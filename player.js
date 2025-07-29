@@ -23,3 +23,60 @@ document.addEventListener("DOMContentLoaded", () => { //espera a que toda la pá
       console.error(error);
     });
 });
+
+
+
+
+
+
+const params = new URLSearchParams(window.location.search);
+const id = params.get('id');
+
+if (id) {
+    cargarTrailer(id);
+} else {
+    document.getElementById('titulo').textContent = "Película no encontrada";
+}
+
+// Cargar trailer de TMDb
+function cargarTrailer(id) {
+    fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=5c550f1f115db24ed0b34dc158d98e9d&language=es-ES`)
+        .then(response => response.json())
+        .then(data => {
+            const trailer = data.results.find(video => video.type === "Trailer" && video.site === "YouTube");
+
+            if (trailer) {
+                const reproductor = document.getElementById('reproductor');
+                const titulo = document.getElementById('titulo');
+
+                reproductor.style.display = "none"; // Oculta el reproductor por defecto si hay tráiler
+
+                const iframe = document.createElement('iframe');
+                iframe.width = "800";
+                iframe.height = "450";
+                iframe.src = `https://www.youtube.com/embed/${trailer.key}`;
+                iframe.frameBorder = "0";
+                iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+                iframe.allowFullscreen = true;
+
+                titulo.textContent = "Disfruta el tráiler";
+                document.querySelector("main").appendChild(iframe);
+            } else {
+                mostrarReproductorLocal();
+            }
+        })
+        .catch(error => {
+            console.error('Error al cargar el tráiler:', error);
+            mostrarReproductorLocal();
+        });
+}
+
+// Si no hay tráiler, muestra el video local
+function mostrarReproductorLocal() {
+    const titulo = document.getElementById('titulo');
+    const reproductor = document.getElementById('reproductor');
+
+    titulo.textContent = "Reproduciendo película (sin tráiler disponible)";
+    reproductor.style.display = "block";
+    reproductor.src = "./videos/pelicula.mp4"; // Cambia la ruta si usas otro archivo
+}
