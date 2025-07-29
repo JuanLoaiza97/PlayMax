@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Perfil de Usuario - PlayMax</title>
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-left">
+            <a href="#" class="logo-link">
+                <img src="./img/logoPM.png" alt="PlayMax Logo" class="logo">
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/.html">Home</a></li>
+                    <li><a href="/peliculas.html">Películas</a></li>
+                    <li><a href="/series.html">Series</a></li>
+                    <li><a href="#">Mi Lista</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="header-right">
+            <a href="#" class="profile-link">
+                <img src="./img/background_replace_100dp_FFFFFF_FILL0_wght400_GRAD0_opsz48.png" alt="Perfil" class="profile-icon">
+            </a>
+        </div>
+    </header>
+    <main class="profile-page-main">
+    <section class="profile-section">
+        <div class="register-container">
+          <div class="form-section">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <img src="./img/profile_avatar.png" alt="Avatar del usuario">
+                    <button class="edit-avatar-btn">Cambiar foto</button>
+                </div>
+                <h1>Mi Perfil</h1>
+            </div>
+            <div class="form-group">
+              <label>Nombre de Usuario</label>
+              <input type="text" id="username" value="JuanPerez123" disabled>
+            </div>
+            <div class="form-group">
+              <label>Correo Electrónico</label>
+              <input type="email" id="email" name="email" placeholder="tu@ejemplo.com" disabled>
+            </div>
+            <div class="form-group">
+              <label>Contraseña</label>
+              <!--<div class="detail-value password-field">
+                        ••••••••
+                        <button class="show-password-btn">Mostrar</button>
+                    </div>-->
+              <input type="password" id="password" name="password" placeholder="••••••••">
+            </div>
+
+                </div>
+
+                <div class="profile-actions">
+                    <button class="edit-profile-btn">Editar Perfil</button>
+                    <button class="change-password-btn">Cambiar Contraseña</button>
+                    <button class="logout-btn">Cerrar Sesión</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <a href="#">
+                    <img src="./img/logoPM.png" alt="PlayMax Logo Footer" class="logo-footer">
+                </a>
+                <p>&copy; 2025 PlayMax. Todos los derechos reservados.</p>
+            </div>
+
+            <nav class="footer-nav">
+                <h3>Navegación</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Películas</a></li>
+                    <li><a href="#">Series</a></li>
+                    <li><a href="#">Mi Lista</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </nav>
+
+            <div class="footer-links">
+                <h3>Ayuda y Soporte</h3>
+                <ul>
+                    <li><a href="#">Política de Privacidad</a></li>
+                    <li><a href="#">Contáctanos</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Hecho con ❤️ en Medellín, Colombia.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

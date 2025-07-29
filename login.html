@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>PlayMax</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 </head>
 <body>
     <header class="main-header">
@@ -32,7 +35,7 @@
         <section class="login-section full-height">
             <div class="login-container">
                 <h2>Iniciar Sesión en PlayMax</h2>
-                <form class="login-form">
+                <form id="loginForm" class="login-form">
                     <div class="form-group">
                         <label for="email">Correo Electrónico</label>
                         <input type="email" id="email" name="email" placeholder="tu@ejemplo.com" required>
@@ -54,7 +57,6 @@
             </div>
         </section>
     </main>
-
 
     <footer class="main-footer">
         <div class="footer-content">
@@ -83,19 +85,53 @@
                     <li><a href="#">Contáctanos</a></li>
                 </ul>
             </div>
-
-            
         </div>
         <div class="footer-bottom">
             <p>Hecho con ❤️ en Medellín, Colombia.</p>
         </div>
-    </footer>        
+    </footer>
 
-            
+    <script>
+        // Configuración de Firebase (usando tu configuración original)
+        const firebaseConfig = {
+            apiKey: "AIzaSyC7PhfZwbP7QcZO8vCKwSQuuTjKt7Br4OQ",
+            authDomain: "playmax-6bc40.firebaseapp.com",
+            databaseURL: "https://playmax-6bc40-default-rtdb.firebaseio.com",
+            projectId: "playmax-6bc40",
+            storageBucket: "playmax-6bc40.firebasestorage.app",
+            messagingSenderId: "972267905771",
+            appId: "1:972267905771:web:485787c59922ce951094ae",
+            measurementId: "G-GMYC8DCLTF"
+        };
 
+        // Inicializar Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
 
-    <script src="script.js"></script>
+        // Manejar el envío del formulario
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
 
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
 
+            auth.signInWithEmailAndPassword(email, password)
+                .then(() => {
+                    // Redireccionar a index.html después de login exitoso
+                    window.location.href = "index.html";
+                })
+                .catch((error) => {
+                    alert("Error al iniciar sesión: " + error.message);
+                    console.error("Error de autenticación:", error);
+                });
+        });
+
+        // Opcional: Verificar si el usuario ya está logueado
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                window.location.href = "./index.html";
+            }
+        });
+    </script>
 </body>
 </html>
