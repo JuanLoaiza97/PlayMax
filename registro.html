@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>PlayMax</title>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 </head>
 <body>
     <header class="main-header">
@@ -28,7 +32,7 @@
         </div>
     </header>
 
-     <main class="register-page-main">
+    <main class="register-page-main">
         <section class="register-section full-height">
             <div class="register-container">
                 <h2>Crea tu Cuenta en PlayMax</h2>
@@ -83,7 +87,6 @@
         </section>
     </main>
 
-
     <footer class="main-footer">
         <div class="footer-content">
             <div class="footer-logo">
@@ -111,19 +114,126 @@
                     <li><a href="#">Contáctanos</a></li>
                 </ul>
             </div>
-
-            
         </div>
         <div class="footer-bottom">
             <p>Hecho con ❤️ en Medellín, Colombia.</p>
         </div>
-    </footer>        
+    </footer>
 
-            
+    <script>
+        // Configuración de Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyC7PhfZwbP7QcZO8vCKwSQuuTjKt7Br4OQ",
+            authDomain: "playmax-6bc40.firebaseapp.com",
+            databaseURL: "https://playmax-6bc40-default-rtdb.firebaseio.com",
+            projectId: "playmax-6bc40",
+            storageBucket: "playmax-6bc40.firebasestorage.app",
+            messagingSenderId: "972267905771",
+            appId: "1:972267905771:web:485787c59922ce951094ae",
+            measurementId: "G-GMYC8DCLTF"
+        };
 
+        // Inicializar Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const database = firebase.database();
 
-    <script src="script.js"></script>
+        // Función para mostrar alerta
+        function showAlert(message, isSuccess) {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = isSuccess ? 'success-alert' : 'error-alert';
+            alertDiv.textContent = message;
+            document.body.appendChild(alertDiv);
 
+            setTimeout(() => {
+                alertDiv.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(alertDiv);
+                }, 500);
+            }, 3000);
+        }
 
+        // Manejar el registro de usuarios
+        document.querySelector('.register-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Obtener valores del formulario
+            const email = document.getElementById('email-register').value;
+            const password = document.getElementById('password-register').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const username = document.getElementById('username').value;
+            const firstName = document.getElementById('first-name').value;
+            const lastName = document.getElementById('last-name').value;
+            const dob = document.getElementById('dob').value;
+
+            // Validaciones
+            if (password !== confirmPassword) {
+                showAlert('Las contraseñas no coinciden', false);
+                return;
+            }
+
+            if (password.length < 6) {
+                showAlert('La contraseña debe tener al menos 6 caracteres', false);
+                return;
+            }
+
+            // Mostrar mensaje de carga
+            showAlert('Registrando usuario...', true);
+
+            // Registrar usuario en Firebase Auth
+            auth.createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // Usuario registrado en Authentication
+                    const user = userCredential.user;
+
+                    // Guardar información adicional en Realtime Database
+                    const userData = {
+                        username: username,
+                        firstName: firstName,
+                        lastName: lastName,
+                        dob: dob,
+                        email: email,
+                        createdAt: firebase.database.ServerValue.TIMESTAMP
+                    };
+
+                    // Guardar en la base de datos
+                    return database.ref('users/' + user.uid).set(userData);
+                })
+                .then(() => {
+                    // Registro completo
+                    showAlert('¡Registro exitoso! Redirigiendo...', true);
+                    setTimeout(() => {
+                        window.location.href = "index.html";
+                    }, 2000);
+                })
+                .catch((error) => {
+                    // Manejo de errores
+                    let errorMessage = "Error en el registro: ";
+
+                    switch(error.code) {
+                        case "auth/email-already-in-use":
+                            errorMessage = "El email ya está en uso";
+                            break;
+                        case "auth/invalid-email":
+                            errorMessage = "Email inválido";
+                            break;
+                        case "auth/weak-password":
+                            errorMessage = "Contraseña demasiado débil";
+                            break;
+                        default:
+                            errorMessage += error.message;
+                    }
+
+                    showAlert(errorMessage, false);
+                    console.error("Error de registro:", error);
+                });
+        });
+
+        // Redirigir al login si se hace clic en el enlace
+        document.querySelector('.login-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = "login.html";
+        });
+    </script>
 </body>
 </html>
