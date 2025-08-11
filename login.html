@@ -89,13 +89,12 @@
         </div>
     </footer>
 
-    <!-- En tu archivo login.html -->
+
 <script type="module">
   // Importaciones de Firebase
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
   import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-  // Tu configuración de Firebase
   const firebaseConfig = {
     apiKey: "AIzaSyC7PhfZwbP7QcZO8vCKwSQuuTjKt7Br4OQ",
     authDomain: "playmax-6bc40.firebaseapp.com",
@@ -132,7 +131,7 @@
       // Redireccionar a index.html después de login exitoso
       window.location.href = "index.html";
     } catch (error) {
-      // Manejo detallado de errores
+
       let errorMessage = "Error al iniciar sesión: ";
 
       switch (error.code) {
@@ -160,7 +159,7 @@
     }
   }
 
-  // Asignar el evento al formulario
+
   document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.querySelector('.login-form');
     loginForm.addEventListener('submit', handleLogin);

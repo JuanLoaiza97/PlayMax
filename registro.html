@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>PlayMax</title>
-    <!-- Firebase SDK -->
+
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
@@ -119,7 +119,6 @@
     </footer>
 
     <script>
-        // Configuración de Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyC7PhfZwbP7QcZO8vCKwSQuuTjKt7Br4OQ",
             authDomain: "playmax-6bc40.firebaseapp.com",
@@ -131,12 +130,12 @@
             measurementId: "G-GMYC8DCLTF"
         };
 
-        // Inicializar Firebase
+
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         const database = firebase.database();
 
-        // Función para mostrar alerta
+
         function showAlert(message, isSuccess) {
             const alertDiv = document.createElement('div');
             alertDiv.className = isSuccess ? 'success-alert' : 'error-alert';
@@ -151,11 +150,11 @@
             }, 3000);
         }
 
-        // Manejar el registro de usuarios
+        // registro de usuario
         document.querySelector('.register-form').addEventListener('submit', function(e) {
             e.preventDefault();
 
-            // Obtener valores del formulario
+            // valores de formulario
             const email = document.getElementById('email-register').value;
             const password = document.getElementById('password-register').value;
             const confirmPassword = document.getElementById('confirm-password').value;
@@ -175,16 +174,16 @@
                 return;
             }
 
-            // Mostrar mensaje de carga
+
             showAlert('Registrando usuario...', true);
 
-            // Registrar usuario en Firebase Auth
+            // Registrar usuario en Base de Datos
             auth.createUserWithEmailAndPassword(email, password)
                 .then((userCredential) => {
-                    // Usuario registrado en Authentication
+
                     const user = userCredential.user;
 
-                    // Guardar información adicional en Realtime Database
+                    // Guardar información
                     const userData = {
                         username: username,
                         firstName: firstName,
@@ -198,14 +197,14 @@
                     return database.ref('users/' + user.uid).set(userData);
                 })
                 .then(() => {
-                    // Registro completo
+
                     showAlert('¡Registro exitoso! Redirigiendo...', true);
                     setTimeout(() => {
                         window.location.href = "index.html";
                     }, 2000);
                 })
                 .catch((error) => {
-                    // Manejo de errores
+
                     let errorMessage = "Error en el registro: ";
 
                     switch(error.code) {
@@ -227,7 +226,6 @@
                 });
         });
 
-        // Redirigir al login si se hace clic en el enlace
         document.querySelector('.login-link').addEventListener('click', function(e) {
             e.preventDefault();
             window.location.href = "login.html";
