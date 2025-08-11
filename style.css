@@ -12,63 +12,67 @@ body {
     font-family: 'Arial', sans-serif;
     background-color: var(--dark-grey);
     color: var(--white);
-    overflow-x: hidden; 
+    overflow-x: hidden;
+}
+.Inicio {
+  width: 50%;
+
 }
 
 .main-header {
     background-color: var(--dark-grey);
-    padding: 15px 50px; 
-    display: flex; 
-    justify-content: space-between; 
+    padding: 15px 50px;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
-    box-sizing: border-box; 
+    box-sizing: border-box;
 }
 
 .header-left {
     display: flex;
     align-items: center;
-    gap: 30px; 
+    gap: 30px;
 }
 
 .logo {
-    height: 40px; 
+    height: 40px;
     width: auto;
 }
 
 .main-nav ul {
-    list-style: none; 
+    list-style: none;
     margin: 0;
     padding: 0;
-    display: flex; 
-    gap: 25px; 
+    display: flex;
+    gap: 25px;
 }
 
 .main-nav ul li a {
-    text-decoration: none; 
-    color: var(--white); 
+    text-decoration: none;
+    color: var(--white);
     font-size: 1.1em;
     font-weight: 500;
-    transition: color 0.3s ease; 
+    transition: color 0.3s ease;
 }
 
 .main-nav ul li a:hover,
-.main-nav ul li a.active { 
+.main-nav ul li a.active {
     color: var(--primary-blue);
 }
 
 .profile-icon {
-    height: 35px; 
+    height: 35px;
     width: 35px;
-    border-radius: 50%; 
-    object-fit: cover; 
+    border-radius: 50%;
+    object-fit: cover;
     cursor: pointer;
     border: 2px solid transparent;
     transition: border-color 0.3s ease;
 }
 
 .profile-icon:hover {
-    border-color: var(--primary-blue); 
+    border-color: var(--primary-blue);
 }
 
 

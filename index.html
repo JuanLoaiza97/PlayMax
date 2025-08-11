@@ -9,19 +9,18 @@
     <body>
         <header class="main-header">
             <div class="header-left">
-                <a href="#" class="logo-link">
+                <a href="/index.html" class="logo-link">
                     <img src="./img/logoPM.png" alt="PlayMax Logo" class="logo">
                 </a>
                 <nav class="main-nav">
                     <ul>
                         <li><a href="/peliculas.html">Películas</a></li>
-                        <li><a href="/series.html">Series</a></li>
-                        <li><a href="#">Mi Lista</a></li>
+                        <li><a href="./series.html">Series</a></li>
                     </ul>
                 </nav>
             </div>
             <div class="header-right">
-                <a href="/login.html" class="profile-link">
+                <a href="./perfil.html" class="profile-link">
                     <img src="./img/background_replace_100dp_FFFFFF_FILL0_wght400_GRAD0_opsz48.png" alt="Perfil" class="profile-icon">
                 </a>
             </div>
@@ -206,14 +205,14 @@
                     </ul>
                 </div>
 
-                
+
             </div>
             <div class="footer-bottom">
                 <p>Hecho con ❤️ en Medellín, Colombia.</p>
             </div>
-        </footer>        
+        </footer>
 
-                
+
 
 
 
@@ -227,7 +226,7 @@
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
-    
+
     import { getDatabase, ref, set, get, push, child } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
 
     // TODO: Add SDKs for Firebase products that you want to use
@@ -252,7 +251,7 @@
 
     // para guardar la conexion con la base de datos
 
-    const db= getDatabase(app); 
+    const db= getDatabase(app);
 
     window.db = db;
     window.ref = ref;
@@ -260,11 +259,11 @@
     window.get = get;
     window.push = push;
 
-    
+
 
 
     </script>
-   
+
 
 
     </body>

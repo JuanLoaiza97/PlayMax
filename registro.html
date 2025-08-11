@@ -5,19 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>PlayMax</title>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 </head>
 <body>
     <header class="main-header">
         <div class="header-left">
-            <a href="#" class="logo-link">
+            <a href="/index.html" class="logo-link">
                 <img src="./img/logoPM.png" alt="PlayMax Logo" class="logo">
             </a>
             <nav class="main-nav">
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Películas</a></li>
-                    <li><a href="#">Series</a></li>
-                    <li><a href="#">Mi Lista</a></li>
+                    <li><a href="/peliculas.html">Películas</a></li>
+                    <li><a href="./series.html">Series</a></li>
                 </ul>
             </nav>
         </div>
@@ -28,7 +30,7 @@
         </div>
     </header>
 
-     <main class="register-page-main">
+    <main class="register-page-main">
         <section class="register-section full-height">
             <div class="register-container">
                 <h2>Crea tu Cuenta en PlayMax</h2>
@@ -76,22 +78,12 @@
                         </label>
                     </div>
 
-                   <button id="btnRegistro" class="register-button">Registrarme</button>
-
-<script>
-document.getElementById("btnRegistro").addEventListener("click", function() {
-    window.location.href = "index.html"; 
-});
-</script>
- 
-
-
+                    <button type="submit" class="register-button">Registrarme</button>
                     <p class="login-text">¿Ya tienes una cuenta? <a href="#" class="login-link">Inicia Sesión aquí</a></p>
                 </form>
             </div>
         </section>
     </main>
-
 
     <footer class="main-footer">
         <div class="footer-content">
@@ -120,20 +112,16 @@ document.getElementById("btnRegistro").addEventListener("click", function() {
                     <li><a href="#">Contáctanos</a></li>
                 </ul>
             </div>
-
-            
         </div>
         <div class="footer-bottom">
             <p>Hecho con ❤️ en Medellín, Colombia.</p>
         </div>
-    </footer>        
+    </footer>
 
             
 
 
     <script src="script.js"></script>
-<script type="module" src="./firebase-config.js"></script>
-<script type="module" src="./registro.js"></script>
 
 
 </body>
