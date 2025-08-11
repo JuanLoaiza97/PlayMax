@@ -76,7 +76,16 @@
                         </label>
                     </div>
 
-                    <button type="submit" class="register-button">Registrarme</button>
+                   <button id="btnRegistro" class="register-button">Registrarme</button>
+
+<script>
+document.getElementById("btnRegistro").addEventListener("click", function() {
+    window.location.href = "index.html"; 
+});
+</script>
+ 
+
+
                     <p class="login-text">¿Ya tienes una cuenta? <a href="#" class="login-link">Inicia Sesión aquí</a></p>
                 </form>
             </div>
@@ -123,6 +132,8 @@
 
 
     <script src="script.js"></script>
+<script type="module" src="./firebase-config.js"></script>
+<script type="module" src="./registro.js"></script>
 
 
 </body>
