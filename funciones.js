@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 // configuración de Firebase
 const firebaseConfig = {
@@ -16,28 +17,46 @@ const firebaseConfig = {
 // Inicializar Firebase y base de datos
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
-
+const auth = getAuth(app);
 
 function GuardarEnHistorial(pelicula) {
-  const historialRef = ref(db, 'historial/');
-  const nuevaPeliculaRef = push(historialRef); // crea una entrada única
+  // Verificar si hay un usuario autenticado
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // Usuario autenticado, proceder a guardar
+      const historialRef = ref(db, `historial/${user.uid}`);
+      const nuevaPeliculaRef = push(historialRef);
 
-  set(nuevaPeliculaRef, {
-    titulo: pelicula.titulo,
-    genero: pelicula.genero,
-    duracion: pelicula.duracion,
-    imagen: pelicula.imagen,
-    fecha: Date.now() // para ordenar por fecha
-  })
-  .then(() => {
-    console.log("Pelicula guardada en el historial");
-  })
-  .catch((error) => {
-    console.error("Error al guardar la pelicula en el historial:", error);
+      set(nuevaPeliculaRef, {
+        titulo: pelicula.titulo,
+        genero: pelicula.genero,
+        duracion: pelicula.duracion,
+        imagen: pelicula.imagen,
+        fecha: Date.now()
+      })
+      .then(() => {
+        console.log("Pelicula guardada en el historial");
+      })
+      .catch((error) => {
+        console.error("Error al guardar la pelicula en el historial:", error);
+      });
+    } else {
+      console.log("Usuario no autenticado, no se puede guardar en Firebase");
+      // Opcionalmente guardar en localStorage como respaldo
+      try {
+        let historialLocal = JSON.parse(localStorage.getItem('historial') || '[]');
+        historialLocal.push({
+          ...pelicula,
+          fecha: Date.now()
+        });
+        localStorage.setItem('historial', JSON.stringify(historialLocal));
+        console.log("Guardado en historial local");
+      } catch (error) {
+        console.error("Error al guardar en localStorage:", error);
+      }
+    }
   });
 }
-
-
 
 function verPelicula(id) {  
     const pelicula = window.peliculas.find(p => p.id === parseInt(id));
@@ -55,10 +74,3 @@ function verPelicula(id) {
 
 window.verPelicula = verPelicula;
 window.GuardarEnHistorial = GuardarEnHistorial;
-
-GuardarEnHistorial({
-  titulo: "Ejemplo de prueba",
-  genero: "Acción",
-  duracion: "1h 45min",
-  imagen: "https://via.placeholder.com/150"
-});
